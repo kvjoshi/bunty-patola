@@ -42,7 +42,7 @@
                         <div class='col-lg-3 col-md-5 col-sm-6 ml-auto flex d-flex mr-auto full-height pt-40 pb-20'>
                             <div class="w100 d-block text-center">
                                 <a href="#" class="ml-auto mr-auto  text-white">
-                                        <img src="images/opal1.png" style="width: 100px"> </a>
+                                        <img src="images/logo.png" style="max-width: 500px"> </a>
                                 <div class="title-sep text-center sep-white mt-20 mb-30">
                                     <span class='font600 fs16 text-dark'>Sign In</span>
 
@@ -50,7 +50,7 @@
                                 <?php
                                  if(isset($_POST['submit']))
                                 {
-                                    $query = mysqli_query($con,"select * from users where u_email='".$_POST['email']."' and u_password='".$_POST['password']."'");
+                                    $query = mysqli_query($con,"select * from user where u_email='".$_POST['email']."' and u_password='".$_POST['password']."'");
                                     $row = mysqli_num_rows($query);
 
                                     if($row>0)

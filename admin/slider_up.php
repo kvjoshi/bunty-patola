@@ -1,10 +1,10 @@
 <?php
 require 'connect.php';
 if(isset($_POST['add_ws'])){
-    $name=$_POST['s_title'];
-    $flag=$_POST['s_flag'];
-    $link=$_POST['s_link'];
-    $target_dir = 'uploads/slides/';
+    $name=$_POST['slide_title'];
+    $flag=$_POST['slide_flag'];
+    $link=$_POST['slide_link'];
+    $target_dir = '../assets/slides/';
     $target_file = $target_dir . basename($_FILES['fileToUpload']['name']);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -46,7 +46,7 @@ if(isset($_POST['add_ws'])){
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-            $sql="INSERT INTO `home_slider`(`s_title`,`s_image`,`s_flag`,`s_link`) VALUES ('".$name."','".$target_file."','".$flag."','".$link."')";
+            $sql="INSERT INTO `home_slider`(`slide_title`,`slide_img`,`slide_flag`,`slide_link`) VALUES ('".$name."','".$target_file."','".$flag."','".$link."')";
             $sql_query=mysqli_query($con,$sql);
             header("location:home_slider.php");
         } else {

@@ -10,7 +10,7 @@ $hs_count = mysqli_num_rows($hs_query);
 if(isset($_GET['del'])){
     $del_id=$_GET['del'];
 
-    $del_sql="DELETE FROM `home_slider` WHERE `s_id` = '$del_id'";
+    $del_sql="DELETE FROM `home_slider` WHERE `slide_id` = '$del_id'";
     $del_query=mysqli_query($con,$del_sql);
     header("location:home_slider.php");
 }
@@ -150,13 +150,16 @@ if(isset($_GET['del'])){
                         ?>
                         <tr>
                             <td><?php echo $wx; ?></td>
-                            <td><?php echo $row['s_title'];?></td>
-                            <td><a href="<?php echo $row['s_image'];?>" target="_blank" >Click To View</a></td>
-                            <td><?php echo $row['s_link'];?></td>
-                            <td><?php if($row['s_flag']==1){echo "ON";} elseif ($row['s_flag']==2){echo "OFF";}?></td>
-                            <td><?php echo $row['s_date'];?></td>
+                            <td><?php echo $row['slide_title'];?></td>
+                            <td><a href="<?php echo $row['slide_img'];?>" target="_blank" >Click To View</a></td>
+                            <td><?php if($row['slide_flag']==1){ ?>
+                                    <a href="<?php echo $row['slide_link'];?>" target="_blank" >Click To View</a>
+                                <?php } elseif ($row['slide_flag']==2){echo "OFF";}?></td>
+
+                            <td><?php if($row['slide_flag']==1){echo "ON";} elseif ($row['slide_flag']==2){echo "OFF";}?></td>
+                            <td><?php echo $row['slide_date'];?></td>
                             <td>
-                                <a href="?del=<?php echo $row['s_id'];?>" class="btn btn-icon btn-rounded btn-danger ml-1">
+                                <a href="?del=<?php echo $row['slide_id'];?>" class="btn btn-icon btn-rounded btn-danger ml-1">
                                     <i class="fa fa-trash"></i>
                                     Delete
                                 </a>
@@ -190,20 +193,23 @@ if(isset($_GET['del'])){
                     <form method="post" action="slider_up.php"  enctype="multipart/form-data" >
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="s_title" placeholder="Slide Title">
+                            <label>Slide Title</label>
+                            <input type="text" class="form-control" name="slide_title" placeholder="Slide Title">
                         </div>
                         <div class="form-group">
                             <label>Learn More Button:</label>
-                            <select class="form-control mb-20 form-control-lg" name="s_flag">
+                            <select class="form-control mb-20 form-control-lg" name="slide_flag">
                                 <option value="1">On</option>
-                                <option value="2">Off</option>
+                                <option value="2" selected>Off</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" name="s_link" placeholder="Slide Link">
+                            <label>Slide Link</label>
+                            <input type="text" class="form-control" name="slide_link" placeholder="Slide Link If Off No Need">
                         </div>
                         <div class="form-group">
+                            <label>Slide Image</label>
                             <div class="custom-file">
                             <input type="file" class="custom-file-input" name="fileToUpload" id="fileToUpload">
                             <label class="custom-file-label" for="fileToUpload"></label>

@@ -3,29 +3,18 @@ session_start();
 include('connect.php');
 require 'session_check.php';
 
-$skin_sql="SELECT COUNT(*) FROM skin_service";
-$skin_query=mysqli_query($con,$skin_sql);
-$sc=mysqli_fetch_assoc($skin_query);
+$cat_sql="SELECT COUNT(*) FROM product_cat";
+$cat_query=mysqli_query($con,$cat_sql);
+$cc=mysqli_fetch_assoc($cat_query);
 
-$hair_sql="SELECT COUNT(*) FROM hair_service";
-$hair_query=mysqli_query($con,$hair_sql);
-$hc=mysqli_fetch_assoc($hair_query);
+$prod_sql="SELECT COUNT(*) FROM product";
+$prod_query=mysqli_query($con,$prod_sql);
+$pc=mysqli_fetch_assoc($prod_query);
 
-$cos_sql="SELECT COUNT(*) FROM cos_service";
-$cos_query=mysqli_query($con,$cos_sql);
-$cc=mysqli_fetch_assoc($cos_query);
+$slider_sql="SELECT COUNT(*) FROM home_slider";
+$slider_query=mysqli_query($con,$slider_sql);
+$sc=mysqli_fetch_assoc($slider_query);
 
-$ant_sql="SELECT COUNT(*) FROM ant_service";
-$ant_query=mysqli_query($con,$ant_sql);
-$ac=mysqli_fetch_assoc($ant_query);
-
-$weight_sql="SELECT COUNT(*) FROM weight_service";
-$weight_query=mysqli_query($con,$weight_sql);
-$wc=mysqli_fetch_assoc($weight_query);
-
-$laser_sql="SELECT COUNT(*) FROM laser_service";
-$laser_query=mysqli_query($con,$laser_sql);
-$lc=mysqli_fetch_assoc($laser_query);
 ?>
 
 <!DOCTYPE html>
@@ -81,15 +70,15 @@ $lc=mysqli_fetch_assoc($laser_query);
                 <div class="page-content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
-                                <div class="list bg-primary shadow-sm rounded overflow-hidden">
+                            <div class="col-lg-4 mb-6 col-md-6 mb-30">
+                                <div class="list bg-primary shadow-3d rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-primary-active text-primary-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Link"></i>
+                                            <i class="icon-Film-Cartridge"></i>
                                         </div>
                                         <div class="list-body text-right">
-                                            <span class="list-title fs-2x  lineH-1"><?php echo $hc['COUNT(*)'];?></span>
-                                            <span class="list-content text-primary-light fs14">Hair Service</span>
+                                            <span class="list-title fs-2x  lineH-1"><?php echo $sc['COUNT(*)'];?></span>
+                                            <span class="list-content text-primary-light fs14">Home Sliders</span>
                                         </div>
                                     </div>
                                     <a href="hair_s.php" class="d-flex text-muted flex text-right flex-row align-items-center justify-content-end pt-5 pb-5 pl-4 pr-4 bg-primary-active">
@@ -97,31 +86,16 @@ $lc=mysqli_fetch_assoc($laser_query);
                                     </a>
                                 </div>
                             </div><!--col-->
-                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
-                                <div class="list bg-warning shadow-sm rounded overflow-hidden">
-                                    <div class="list-item">
-                                        <div class="list-thumb bg-warning-active text-primary-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Link"></i>
-                                        </div>
-                                        <div class="list-body text-right">
-                                            <span class="list-title fs-2x  lineH-1"><?php echo $sc['COUNT(*)'];?></span>
-                                            <span class="list-content text-warning-light fs14">Skin Service</span>
-                                        </div>
-                                    </div>
-                                    <a href="skin_s.php" class="d-flex text-muted flex text-right flex-row align-items-center justify-content-end pt-5 pb-5 pl-4 pr-4 bg-warning-active">
-                                        View Detail <i class="fa fa-chevron-right ml-2 fs12 mt-1"></i>
-                                    </a>
-                                </div>
-                            </div><!--col-->
-                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
-                                <div class="list bg-teal shadow-sm rounded overflow-hidden">
+
+                            <div class="col-lg-4 mb-6 col-md-6 mb-30">
+                                <div class="list bg-teal shadow-3d rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-teal-active text-teal-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Link"></i>
+                                            <i class="icon-Shopping-Cart"></i>
                                         </div>
                                         <div class="list-body text-right">
                                             <span class="list-title fs-2x  lineH-1"><?php echo $cc['COUNT(*)'];?></span>
-                                            <span class="list-content text-primary-light fs14">Cosmetics Service</span>
+                                            <span class="list-content text-primary-light fs14">Product Categories</span>
                                         </div>
                                     </div>
                                     <a href="cos_s.php" class="d-flex text-muted flex text-right flex-row align-items-center justify-content-end pt-5 pb-5 pl-4 pr-4 bg-teal-active">
@@ -129,15 +103,16 @@ $lc=mysqli_fetch_assoc($laser_query);
                                     </a>
                                 </div>
                             </div><!--col-->
-                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
-                                <div class="list bg-success shadow-sm rounded overflow-hidden">
+
+                            <div class="col-lg-4 mb-6 col-md-6 mb-30">
+                                <div class="list bg-success shadow-3d rounded overflow-hidden">
                                     <div class="list-item">
                                         <div class="list-thumb bg-success-active text-primary-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Link"></i>
+                                            <i class="icon-Bag-Items"></i>
                                         </div>
                                         <div class="list-body text-right">
-                                            <span class="list-title fs-2x  lineH-1"><?php echo $lc['COUNT(*)'];?></span>
-                                            <span class="list-content text-success-light fs14">Laser Service</span>
+                                            <span class="list-title fs-2x  lineH-1"><?php echo $pc['COUNT(*)'];?></span>
+                                            <span class="list-content text-success-light fs14">Products</span>
                                         </div>
                                     </div>
                                     <a href="laser_s.php" class="d-flex text-muted flex text-right flex-row align-items-center justify-content-end pt-5 pb-5 pl-4 pr-4 bg-success-active">
@@ -145,38 +120,7 @@ $lc=mysqli_fetch_assoc($laser_query);
                                     </a>
                                 </div>
                             </div><!--col-->
-                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
-                                <div class="list bg-primary shadow-sm rounded overflow-hidden">
-                                    <div class="list-item">
-                                        <div class="list-thumb bg-primary-active text-primary-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Link"></i>
-                                        </div>
-                                        <div class="list-body text-right">
-                                            <span class="list-title fs-2x  lineH-1"><?php echo $ac['COUNT(*)'];?></span>
-                                            <span class="list-content text-primary-light fs14">Antenatal Service</span>
-                                        </div>
-                                    </div>
-                                    <a href="ant_s.php" class="d-flex text-muted flex text-right flex-row align-items-center justify-content-end pt-5 pb-5 pl-4 pr-4 bg-primary-active">
-                                        View Detail <i class="fa fa-chevron-right ml-2 fs12 mt-1"></i>
-                                    </a>
-                                </div>
-                            </div><!--col-->
-                            <div class="col-lg-3 mb-6 col-md-6 mb-30">
-                                <div class="list bg-warning shadow-sm rounded overflow-hidden">
-                                    <div class="list-item">
-                                        <div class="list-thumb bg-warning-active text-primary-light avatar rounded-circle avatar60 shadow-sm">
-                                            <i class="icon-Link"></i>
-                                        </div>
-                                        <div class="list-body text-right">
-                                            <span class="list-title fs-2x  lineH-1"><?php echo $wc['COUNT(*)'];?></span>
-                                            <span class="list-content text-warning-light fs14">Weight Management Service</span>
-                                        </div>
-                                    </div>
-                                    <a href="weight_s.php" class="d-flex text-muted flex text-right flex-row align-items-center justify-content-end pt-5 pb-5 pl-4 pr-4 bg-warning-active">
-                                        View Detail <i class="fa fa-chevron-right ml-2 fs12 mt-1"></i>
-                                    </a>
-                                </div>
-                            </div><!--col-->
+
                         </div>
                     </div>
                 </div>
