@@ -1,3 +1,17 @@
+<?php
+session_start();
+include('connect.php');
+
+$hs_sql="SELECT * FROM `home_slider`";
+$hs_query=mysqli_query($con,$hs_sql);
+$p_sql="SELECT * FROM `product` , `product_cat` WHERE `product`.`pc_id` = `product_cat`.`pc_id`";
+$p_query=mysqli_query($con,$p_sql);
+$p_count = mysqli_num_rows($p_query);
+$pc_sql="SELECT * FROM `product_cat`";
+$pc_query=mysqli_query($con,$pc_sql);
+$pc_count = mysqli_num_rows($pc_query);
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,7 +50,7 @@
                         </li>
                         <li class="nav-item"><a href="process.php" class="nav-link">Process</a>
                         </li>
-                        <li class="nav-item"><a href="https://www.pinterest.com/kishorgm165/" class="nav-link">Gallery</a>
+                        <li class="nav-item"><a href="https://www.instagram.com/buntypatola_com/?hl=en" class="nav-link">Gallery</a>
                         </li>
                         <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a>
                         </li>
@@ -51,14 +65,16 @@
 </div>
 
 <section class="controls-inside controls-light  flickity-enabled is-draggable p-0" data-flickity='{ "imagesLoaded": true, "wrapAround": true ,"prevNextButtons": false}'>
+    <?php while ($rows=mysqli_fetch_assoc($hs_query)){ ?>
     <div class="carousel-cell">
-        <img src="assets/images/cover-1.jpeg" alt="Image" class="w-100 vh-100 opacity-70">
+        <img src="<?php echo $rows['slide_img']?>" alt="Image" class="w-100 vh-100 opacity-70">
+    </div>
+    <?php } ?>
+    <div class="carousel-cell">
+        <img src="assets/photos/IMG_20210120_173054.jpg" alt="Image" class="w-100  vh-100  opacity-50">
     </div>
     <div class="carousel-cell">
-        <img src="assets/images/cover-2.jpeg" alt="Image" class="w-100  vh-100  opacity-50">
-    </div>
-    <div class="carousel-cell">
-        <img src="assets/images/cover-3.jpg" alt="Image" class="w-100  vh-100  opacity-50">
+        <img src="assets/photos/IMG_20201219_201759.jpg" alt="Image" class="w-100  vh-100  opacity-50">
     </div>
 </section>
 
@@ -68,12 +84,12 @@
 
             <h2 class="display-4 mx-xl-6 pb-6">Category</h2>
             <div class="row">
-                <?php if(0==1){?>
+                <?php while ($row=mysqli_fetch_assoc($pc_query)){ ?>
                     <div class="col-sm-6 col-lg-4 mb-4">
-                        <a href="#">
-                            <img src="<?php echo "assets/images/Patola-Double-Ikat-Saree-250x313.jpg"?>" alt="Volkswagen Australia" class="rounded mb-3">
-                            <h4 class="mb-0"><?php echo "Name"?></h4>
-                            <div class="text-small text-muted"><?php echo "Type"?></div>
+                        <a href="product_list1.php">
+                            <img src="<?php echo $row['pc_img']?>" alt="<?php echo $row['pc_name']?>" class="rounded mb-3">
+                            <h4 class="mb-0"><?php echo $row['pc_name']?></h4>
+
                         </a>
                     </div>
                 <?php }?>
@@ -127,7 +143,7 @@
     <div class="arrows-inside highlight-selected mb-6" data-flickity='{ "autoPlay": true, "imagesLoaded": true, "wrapAround": true }'>
         <div class="carousel-cell justify-content-center col-lg-2 col-md-5 col-9 ">
 
-            <a href="https://www.pintrest.com" target="_blank">
+            <a href="https://www.instagram.com/buntypatola_com/?hl=en" target="_blank">
                 <img src="assets/images/Jay_pat_dis_19-1-250x313.jpg" alt="" class="rounded shadow-3d hover-shadow-3d border">
             </a>
 
